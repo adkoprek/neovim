@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-   ensure_installed = { "lua_ls", "html", "cssls", "quick_lint_js", "dockerls", "pylsp", "clangd", "omnisharp" },
+   ensure_installed = { "lua_ls", "html", "cssls", "quick_lint_js", "dockerls", "pylsp", "clangd", "omnisharp", "cmake" },
 }
 
 local on_attach = function(_, _)
@@ -28,6 +28,24 @@ require("lspconfig").lua_ls.setup {
         library = {
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.stdpath "config" .. "/lua"] = true,
+        },
+      },
+    },
+  }
+}
+
+require("lspconfig").cmake.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Html = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/html"] = true,
+          [vim.fn.stdpath "config" .. "/cmake"] = true,
         },
       },
     },
