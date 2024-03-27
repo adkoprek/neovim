@@ -37,9 +37,18 @@ return require('packer').startup(function(use)
   use( 'mfussenegger/nvim-dap' )
   use( 'ldelossa/nvim-dap-projects' )
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use( 'mfussenegger/nvim-dap-python' )
   use( 'willthbill/opener.nvim' )
   use( "eoh-bse/minintro.nvim" )
   use( 'windwp/nvim-ts-autotag' )
   use( 'ErichDonGubler/lsp_lines.nvim' )
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+  }
+  use( 'MTDL9/vim-log-highlighting' )
 end)
 

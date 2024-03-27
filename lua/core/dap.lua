@@ -1,18 +1,17 @@
-local dap = require('dap')
+local dap, dapui, dap_python = require("dap"), require("dapui"), require('dap-python')
 
 require('nvim-dap-projects').config_paths = { './.nvim/nvim-dap.lua' }
+dap_python.setup('~/.virtualenvs/debugpy/bin/python')
 
 vim.keymap.set("n", "<F5>", dap.continue)
-vim.keymap.set("n", "<F10>", dap.step_over)
-vim.keymap.set("n", "<F11>", dap.step_into)
+vim.keymap.set("n", "<leader>o", dap.step_over)
+vim.keymap.set("n", "<leader>i", dap.step_into)
 vim.keymap.set("n", "<F12>", dap.step_out)
-vim.keymap.set("n", "<leader>p", dap.toggle_breakpoint)
-vim.keymap.set("n", "<leader>P", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
 vim.keymap.set("n", "<leader>lp", function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 vim.keymap.set("n", "<leader>dr", dap.repl.open)
 vim.keymap.set("n", "<leader>dl", dap.run_last)
-
-local dap, dapui = require("dap"), require("dapui")
 
 dapui.setup({
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
@@ -24,6 +23,7 @@ dapui.setup({
     edit = "e",
     repl = "r",
     toggle = "t",
+
   },
   -- Use this to override mappings for specific elements
   element_mappings = {
