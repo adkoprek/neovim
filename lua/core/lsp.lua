@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-   ensure_installed = { "lua_ls", "html", "cssls", "quick_lint_js", "dockerls", "pylsp", "clangd", "omnisharp", "cmake" },
+   ensure_installed = { "lua_ls", "html", "cssls", "quick_lint_js", "dockerls", "pyright", "clangd", "omnisharp", "cmake" },
 }
 
 local on_attach = function(_, _)
@@ -15,6 +15,23 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+require("lspconfig").dartls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/dart"] = true,
+          [vim.fn.stdpath "config" .. "/dart"] = true,
+        },
+      },
+    },
+  }
+}
 
 require("lspconfig").lua_ls.setup {
   on_attach = on_attach,
@@ -44,7 +61,7 @@ require("lspconfig").cmake.setup {
       },
       workspace = {
         library = {
-          [vim.fn.expand "$VIMRUNTIME/html"] = true,
+          [vim.fn.expand "$VIMRUNTIME/cmake"] = true,
           [vim.fn.stdpath "config" .. "/cmake"] = true,
         },
       },
@@ -124,7 +141,7 @@ require("lspconfig").dockerls.setup {
   }
 }
 
-require("lspconfig").pylsp.setup {
+require("lspconfig").pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
