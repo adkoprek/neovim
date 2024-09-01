@@ -34,6 +34,12 @@ return require('packer').startup(function(use)
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets',
   }
+  use {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+          require("copilot_cmp").setup()
+      end,
+  }
   use( 'mfussenegger/nvim-dap' )
   use( 'ldelossa/nvim-dap-projects' )
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
