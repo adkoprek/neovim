@@ -1,5 +1,7 @@
+local cmp = require("cmp")
+
 cmp.setup {
-  ...
+  ...,
   sources = {
     -- Copilot Source
     { name = "copilot", group_index = 2 },
