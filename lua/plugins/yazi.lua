@@ -4,7 +4,7 @@ return {
   dependencies = { "folke/snacks.nvim", lazy = true },
   keys = {
     {
-      "<leader>q",
+      "<leader>y",
       mode = { "n", "v" },
       "<cmd>Yazi<cr>",
       desc = "Open yazi at the current file",
